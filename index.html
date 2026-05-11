@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Better Body Academy — Submit Your Post</title>
+<link rel="icon" type="image/png" href="BADGE LOGO (Filled).png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="page">
+    <div class="bg-glow"></div>
+
+    <div class="container">
+
+      <!-- HEADER -->
+      <header class="page-header">
+        <img src="(BBA) Logo-Horizantal White.png" alt="Better Body Academy" class="logo-horizontal" />
+      </header>
+
+      <!-- HERO -->
+      <section class="hero">
+        <img src="BADGE LOGO (Filled).png" alt="BBA Badge" class="badge" />
+        <p class="eyebrow">Transformation Team</p>
+        <h1>Generate Your Post</h1>
+        <p class="sub">Enter a caption and topic. Our system will generate a ready-to-post video for you.</p>
+      </section>
+
+      <!-- FORM -->
+      <section class="form-wrap">
+        <form class="post-form" id="postForm">
+
+          <div class="field">
+            <label for="caption">Caption</label>
+            <textarea id="caption" name="caption" rows="4" placeholder="Write the caption you want on your post..." required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="topic">Topic</label>
+            <input type="text" id="topic" name="topic" placeholder="e.g. fat loss tips, morning routine, protein hacks" required />
+          </div>
+
+          <a href="#" class="btn-generate" id="generateBtn">
+            <span class="btn-beam"></span>
+            <span class="btn-inner">
+              <img src="BADGE LOGO (Filled).png" alt="" class="btn-avatar btn-avatar-left" />
+              <span class="btn-text">Generate My Video</span>
+            </span>
+          </a>
+        </form>
+
+        <div class="success" id="success">
+          <div class="check">✓</div>
+          <h2>Generating Your Video</h2>
+          <p>Your post is being created. We'll notify you the moment it's ready.</p>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="page-footer">
+        <p>© 2026 Better Body Academy · Transformation Team</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
