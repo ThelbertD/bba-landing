@@ -148,7 +148,7 @@ async function generate(e) {
   btnText.textContent = 'Scheduling...';
 
   // n8n webhook
-  const WEBHOOK_URL = 'https://betterbodyacademy.app.n8n.cloud/webhook/974a2442-821a-4c00-b4cd-022194affd26';
+  const WEBHOOK_URL = 'https://betterbodyacademy.app.n8n.cloud/webhook-test/974a2442-821a-4c00-b4cd-022194affd26';
 
   const payload = {
     title,
