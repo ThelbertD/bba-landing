@@ -121,6 +121,10 @@ img { max-width: 100%; display: block; }
   margin-bottom: 8px;
 }
 .field input[type="text"],
+.field input[type="url"],
+.field input[type="date"],
+.field input[type="time"],
+.field select,
 .field textarea {
   width: 100%;
   padding: 14px 16px;
@@ -137,6 +141,7 @@ img { max-width: 100%; display: block; }
   color: #475569;
 }
 .field input:focus,
+.field select:focus,
 .field textarea:focus {
   outline: none;
   border-color: #3b82f6;
@@ -144,6 +149,181 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
 }
 .field textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+
+.field .optional {
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  text-transform: none;
+  margin-left: 4px;
+}
+.field .hint {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* date/time input styling for dark theme */
+.field input[type="date"],
+.field input[type="time"] {
+  color-scheme: dark;
+  cursor: pointer;
+  padding-left: 44px;
+  background-repeat: no-repeat;
+  background-position: 14px center;
+  background-size: 18px 18px;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+.field input[type="date"] {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>");
+}
+.field input[type="time"] {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polyline points='12 6 12 12 16 14'/></svg>");
+}
+.field input[type="date"]:focus,
+.field input[type="time"]:focus,
+.field input[type="date"].has-value,
+.field input[type="time"].has-value {
+  border-color: rgba(96,165,250,0.6);
+  background-color: #0a1428;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow:
+    0 0 0 4px rgba(59,130,246,0.14),
+    0 6px 18px rgba(59,130,246,0.12);
+}
+.field input[type="date"].has-value,
+.field input[type="time"].has-value {
+  background-image:
+    radial-gradient(circle at 14px center, rgba(96,165,250,0.18), transparent 60%),
+    var(--dt-icon);
+  background-repeat: no-repeat, no-repeat;
+  background-position: left center, 14px center;
+  background-size: auto, 18px 18px;
+}
+.field input[type="date"].has-value {
+  --dt-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2360a5fa' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/><circle cx='12' cy='16' r='1.5' fill='%2360a5fa'/></svg>");
+}
+.field input[type="time"].has-value {
+  --dt-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2360a5fa' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polyline points='12 6 12 12 16 14'/></svg>");
+}
+.field input[type="date"]::-webkit-calendar-picker-indicator,
+.field input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.65) sepia(1) saturate(5) hue-rotate(190deg);
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity .2s, transform .2s;
+}
+.field input[type="date"]:hover::-webkit-calendar-picker-indicator,
+.field input[type="time"]:hover::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%2360a5fa' d='M6 8L0 0h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.field select option {
+  background: #0c1220;
+  color: #ffffff;
+}
+
+/* searchable timezone combobox */
+.tz-combobox {
+  position: relative;
+}
+.tz-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: #05070d;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.tz-input::placeholder { color: #475569; }
+.tz-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #070b16;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+}
+.tz-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  background: #0c1220;
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: 8px;
+  list-style: none;
+  padding: 4px;
+  margin: 0;
+  z-index: 20;
+  display: none;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+}
+.tz-list.open { display: block; }
+.tz-list li {
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: background .12s, color .12s;
+}
+.tz-list li:hover,
+.tz-list li.active {
+  background: rgba(59,130,246,0.18);
+  color: #ffffff;
+}
+.tz-list li.selected {
+  color: #60a5fa;
+  font-weight: 600;
+}
+.tz-list .tz-empty {
+  padding: 12px;
+  color: #64748b;
+  font-size: 0.85rem;
+  text-align: center;
+  cursor: default;
+}
+.tz-list .tz-empty:hover { background: transparent; color: #64748b; }
+.tz-list::-webkit-scrollbar { width: 8px; }
+.tz-list::-webkit-scrollbar-track { background: transparent; }
+.tz-list::-webkit-scrollbar-thumb {
+  background: rgba(96,165,250,0.25);
+  border-radius: 4px;
+}
+
+/* schedule layout */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.schedule-item .sub-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+@media (max-width: 600px) {
+  .schedule-grid { grid-template-columns: 1fr; }
+}
 
 /* ============ GENERATE BUTTON (animated beam) ============ */
 .btn-generate {
