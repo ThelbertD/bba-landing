@@ -147,8 +147,8 @@ async function generate(e) {
   btn.classList.add('disabled');
   btnText.textContent = 'Scheduling...';
 
-  // Replace with your backend webhook that generates the video
-  const WEBHOOK_URL = '';
+  // n8n webhook
+  const WEBHOOK_URL = 'https://betterbodyacademy.app.n8n.cloud/webhook-test/974a2442-821a-4c00-b4cd-022194affd26';
 
   const payload = {
     title,
