@@ -176,7 +176,7 @@ async function generate(e) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (err) {
     btn.classList.remove('disabled');
-    btnText.textContent = 'Schedule My Video';
+    btnText.textContent = 'Schedule My Content';
     alert('Something went wrong. Please try again.');
   }
 }
