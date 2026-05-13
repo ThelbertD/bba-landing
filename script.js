@@ -148,7 +148,7 @@ async function generate(e) {
   btnText.textContent = 'Scheduling...';
 
   // n8n webhook
-  const WEBHOOK_URL = 'https://betterbodyacademy.app.n8n.cloud/webhook-test/974a2442-821a-4c00-b4cd-022194affd26';
+  const WEBHOOK_URL = 'https://betterbodyacademy.app.n8n.cloud/webhook/974a2442-821a-4c00-b4cd-022194affd26';
 
   const payload = {
     title,
@@ -164,20 +164,22 @@ async function generate(e) {
   };
 
   try {
-    if (WEBHOOK_URL) {
-      await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) {
+      throw new Error(`Webhook returned HTTP ${res.status}`);
     }
     form.style.display = 'none';
     success.classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (err) {
+    console.error('Webhook submit failed:', err);
     btn.classList.remove('disabled');
     btnText.textContent = 'Schedule My Content';
-    alert('Something went wrong. Please try again.');
+    alert(`Couldn't schedule your post: ${err.message}\n\nIf this is an n8n webhook, make sure the workflow is set to "Active" in n8n.`);
   }
 }
 
